@@ -6,7 +6,7 @@ from services.moneeda_service import MoneedaApiService
 
 
 blueprint = flask.Blueprint("views", __name__)
-
+moneeda_service_object = None
 
 @blueprint.route("/")
 def home():
@@ -25,14 +25,8 @@ def products():
     The return is a list of JSON products
     """
 
-    # Create the service object
-    moneeda_api_url = os.environ.get("MONEEDA_API_URL")
-    auth_token = os.environ.get("MONEEDA_API_TOKEN")
-
-    api_service = MoneedaApiService(
-        base_url=moneeda_api_url,
-        moneeda_token= auth_token,
-    )
+    # Get the service object
+    api_service = _moneeda_service()
 
     # Get the exchanges we are interested into
     exchange_list = os.environ.get("AVAILABLE_EXCHANGES").split(",")
@@ -53,6 +47,47 @@ def products():
             "status": "error",
             "message": "something wrong with moneeda api or processing moneeda data"
         }), 500, {"Content-Type": "application/json"}
+
+
+@blueprint.route("/products/<product_id>/prices")
+def prices(product_id):
+    """
+    This route is supposed to return all the prices of products in all three
+    exchanges.
+
+    The route receives the product_id and then uses the service to communicate
+    with the API and get the price
+
+    
+    """
+
+    # Get the service object 
+    api_service = _moneeda_service()
+
+    # Get the exchanges
+    exchange_list = os.environ.get("AVAILABLE_EXCHANGES").split(",")
+
+    return json.dumps([
+        api_service.get_product_price_for_exchange(product_id, ex)
+        for ex in exchange_list
+    ])
+
+def _moneeda_service():
+    """
+    This method returns a singleton object to deal with Moneeda API
+    """
+    global moneeda_service_object
+    if not moneeda_service_object:
+        # Create the service object
+        moneeda_api_url = os.environ.get("MONEEDA_API_URL")
+        auth_token = os.environ.get("MONEEDA_API_TOKEN")
+
+        moneeda_service_object = MoneedaApiService(
+            base_url=moneeda_api_url,
+            moneeda_token= auth_token,
+        )
+
+    return moneeda_service_object
 
 
 def _get_shared_products_from_exchanges(products_by_exchange):

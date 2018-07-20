@@ -27,3 +27,18 @@ class MoneedaApiService(object):
         )
 
         return response.json()
+
+    def get_product_price_for_exchange(self, product_id, exchange):
+        response = requests.get(
+            "{}/exchanges/{}/ticker".format(self.base_url, exchange),
+            headers=self._get_default_header(),
+            params={"product": product_id}
+        )
+
+        ticker = response.json()
+        
+        return { 
+            "exchange": exchange,
+            "product_id": product_id,
+            "price": ticker.get("price", None)
+        }
