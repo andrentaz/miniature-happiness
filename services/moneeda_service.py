@@ -1,6 +1,22 @@
 import requests
 
 
+class InvalidProduct(Exception):
+    status_code = 400
+
+    def __init__(self, message, status_code=None, payload=None):
+        Exception.__init__(self)
+        if status_code:
+            self.status_code = status_code
+        self.message = message
+        self.payload = payload
+
+    def to_dict(self):
+        rv = dict(self.payload or ())
+        rv["message"] = self.message
+        return rv
+
+
 class MoneedaApiService(object):
     """
     docstring for MoneedaApiService
@@ -34,6 +50,10 @@ class MoneedaApiService(object):
             headers=self._get_default_header(),
             params={"product": product_id}
         )
+
+        if response.status_code == 400:
+            e = response.json()
+            raise InvalidProduct(e["message"], status_code=response.status_code)
 
         ticker = response.json()
         

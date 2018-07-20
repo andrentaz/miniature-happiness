@@ -31,22 +31,16 @@ def products():
     # Get the exchanges we are interested into
     exchange_list = os.environ.get("AVAILABLE_EXCHANGES").split(",")
 
-    try:
-        # Get the lists of available products to the given exchange
-        products_by_exchange = {
-            ex: api_service.get_products_for_exchange(ex)
-            for ex in exchange_list
-        }
+    # Get the lists of available products to the given exchange
+    products_by_exchange = {
+        ex: api_service.get_products_for_exchange(ex)
+        for ex in exchange_list
+    }
 
-        # Get shared products
-        shared_products = _get_shared_products_from_exchanges(products_by_exchange)
+    # Get shared products
+    shared_products = _get_shared_products_from_exchanges(products_by_exchange)
 
-        return json.dumps(shared_products)
-    except Exception:
-        return json.dumps({
-            "status": "error",
-            "message": "something wrong with moneeda api or processing moneeda data"
-        }), 500, {"Content-Type": "application/json"}
+    return json.dumps(shared_products)
 
 
 @blueprint.route("/products/<product_id>/prices")

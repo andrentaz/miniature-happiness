@@ -1,12 +1,23 @@
 import os
 
 from flask import Flask
-from endpoints import blueprint
+from flask import jsonify
+from services.moneeda_service import InvalidProduct
+from views import blueprint
+
 
 
 def create_app():
     app = Flask(__name__)
     app.register_blueprint(blueprint)
+
+
+    @app.errorhandler(InvalidProduct)
+    def invalid_product(error):
+        response = jsonify(error.to_dict())
+        response.status_code = error.status_code
+        return response
+
     return app
 
 

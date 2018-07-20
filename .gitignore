@@ -1,0 +1,15 @@
+i# OS generated files
+.DS_Store*
+
+# Build temporary files
+*.pyc
+*.pyo
+*.swp
+*~
+\#*
+
+# Setuptools files
+/dist
+*.egg*
+/*/setup.cfg
+
