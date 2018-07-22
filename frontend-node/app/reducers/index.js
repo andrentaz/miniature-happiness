@@ -31,6 +31,7 @@ const exchange = (state = defaultExchangeState, action) => {
             return {
                 ...state,
                 fetching: true,
+                productId: action.productId,
             };
 
         case types.RECEIVED_PRODUCTS:
@@ -45,7 +46,6 @@ const exchange = (state = defaultExchangeState, action) => {
                 ...state,
                 fetching: false,
                 productPrices: action.productPrices,
-                productId: action.productId,
             };
 
         case types.FAILED_FETCH_PRODUCTS:

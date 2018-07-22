@@ -3,6 +3,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const FaviconWebpackPlugin = require('favicons-webpack-plugin');
 
 module.exports = {
     devtool: 'eval-source-map',
@@ -24,6 +25,7 @@ module.exports = {
             inject: 'body',
             filename: 'index.html'
         }),
+        new FaviconWebpackPlugin('./currency-exchange.png'),
         new webpack.optimize.OccurenceOrderPlugin(),
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoErrorsPlugin(),

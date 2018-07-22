@@ -6,8 +6,23 @@
 }
 
 .title {
+    display: inline-block;
     text-align: center;
     margin: 0px;
     padding: 20px;
     color: white;
+    vertical-align: middle;
+}
+
+.exchangeImage {
+    display: inline-block;
+    background-image: url("https://openclipart.org/download/270549/currency-exchange-icon.svg");
+    background-size: 100px 100px;
+    width: 100px;
+    height: 100px;
+    vertical-align: middle;
+}
+
+.header {
+    text-align: center;
 }

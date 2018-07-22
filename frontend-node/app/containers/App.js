@@ -22,7 +22,10 @@ class AppContainer extends Component {
     render() {
         return (
             <div className={style.appContainer}>
-                <h1 className={style.title}>Available Exchanges</h1>
+                <div className={style.header}>
+                    <div className={style.exchangeImage} />
+                    <h1 className={style.title}>Available Exchanges</h1>
+                </div>
                 <FilterableTable />
             </div>
         );

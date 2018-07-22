@@ -53,3 +53,6 @@ npm-debug.log
 
 #ngrok
 ngrok
+
+# ignore production files
+dist/

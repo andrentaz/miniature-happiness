@@ -39,7 +39,10 @@ const fetchProducts = () => async dispatch => {
  * @param {string} productId - selected product id
  */
 const fetchProductPrices = (productId) => async dispatch => {
-    dispatch({ type: types.FETCHING_PRODUCT_PRICES });
+    dispatch({
+        type: types.FETCHING_PRODUCT_PRICES,
+        productId,
+    });
 
     try {
         const productPrices = await ExchangeApi.getProductPrices(productId);
@@ -47,7 +50,6 @@ const fetchProductPrices = (productId) => async dispatch => {
         dispatch({
             type: types.RECEIVED_PRODUCT_PRICES,
             productPrices,
-            productId,
         });
     } catch (error) {
         dispatch({

@@ -1,3 +1,4 @@
+import Loading from 'react-loading-animation';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
@@ -9,9 +10,17 @@ import style from '../styles/filterableTable.scss';
 
 
 class FilterableTable extends Component {
+    static propTypes = {
+        fetching: PropTypes.bool,
+        filter: PropTypes.string,
+        onFilter: PropTypes.func,
+        productId: PropTypes.string,
+        resetSelection: PropTypes.func,
+    };
+
     render() {
         let input;
-        const { filter, onFilter, productId, resetSelection } = this.props;
+        const { fetching, filter, onFilter, productId, resetSelection } = this.props;
 
         const headerText = productId === ''
             ? 'Click on a product card to check the price!'
@@ -19,39 +28,35 @@ class FilterableTable extends Component {
 
         return (
             <div className={style.filterableTable}>
-                <div className={style.productCtas}>
-                    <p className={style.productField}>
-                        {headerText}
-                    </p>
-                    {
-                        productId === '' ? (
-                            <input
-                                value={filter}
-                                ref={node => {input = node;}}
-                                onChange={() => onFilter(input.value)} />
-                        ) : (
-                            <button className={style.resetButton} onClick={resetSelection}>RESET</button>
-                        )
-                    }
-                </div>
+                <Loading isLoading={fetching}>
+                    <div className={style.productCtas}>
+                        <p className={style.productField}>
+                            {headerText}
+                        </p>
+                        {
+                            productId === '' ? (
+                                <input
+                                    value={filter}
+                                    ref={node => {input = node;}}
+                                    onChange={() => onFilter(input.value)} />
+                            ) : (
+                                <button className={style.resetButton} onClick={resetSelection}>RESET</button>
+                            )
+                        }
+                    </div>
 
-                <div className={style.productsContainer}>
-                    <ProductTable filter={filter} />
-                </div>
+                    <div className={style.productsContainer}>
+                        <ProductTable filter={filter} />
+                    </div>
+                </Loading>
             </div>
         );
     }
 }
 
-FilterableTable.propTypes = {
-    filter: PropTypes.string,
-    onFilter: PropTypes.func,
-    productId: PropTypes.string,
-    resetSelection: PropTypes.func,
-};
-
 const mapStateToProps = (state) => {
     return {
+        fetching: state.exchange.fetching,
         filter: state.filter,
         productId: state.exchange.productId,
     };

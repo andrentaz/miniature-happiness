@@ -16,8 +16,8 @@ class ProductCard extends Component {
     render() {
         const { data, onSelectProduct } = this.props;
         return (
-            <div className={style.productRow} onClick={() => onSelectProduct(data.id)}>
-                <p className={style.productRowText}>{data.id}</p>
+            <div id="pcard" className={style.productCard} onClick={() => onSelectProduct(data.id)}>
+                <p className={style.productCardText}>{data.id}</p>
             </div>
         );
     }
