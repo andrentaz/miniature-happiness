@@ -11,7 +11,7 @@ ARG moneeda_api_url=https://api.moneeda.com/api
 
 COPY . .
 
-EXPOSE 5000 5000
+EXPOSE 5000
 
 ENV MONEEDA_API_URL=$moneeda_api_url
 ENV MONEEDA_API_TOKEN=$moneeda_api_token

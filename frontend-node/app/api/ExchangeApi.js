@@ -3,7 +3,7 @@ import { xhr } from '../utils/web';
 import { ProductVO, ProductPriceVO } from './vo';
 
 // Setup of the basic configuration
-const BASE_URL = 'http://localhost:5000';
+const BASE_URL = process.env.EXCHANGE_URL || 'http://localhost:49160';
 const ApiRoutes = {
     products: BASE_URL + '/products',
     productPrices: BASE_URL + '/products/<product_id>/prices',
