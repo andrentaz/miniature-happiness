@@ -24,7 +24,7 @@ class AppContainer extends Component {
             <div className={style.appContainer}>
                 <div className={style.header}>
                     <div className={style.exchangeImage} />
-                    <h1 className={style.title}>Available Exchanges</h1>
+                    <h1 className={style.title}>Exchanger</h1>
                 </div>
                 <div className={style.explanation}>
                     <p>
