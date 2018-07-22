@@ -25,7 +25,7 @@ $ sh run.sh
 ```
 Be sure you have docker installed before running, and the API token in the environment variable **API_TOKEN**. It will setup both containers so you can use the browser or curl to check both the front and back.
 
-The script will put the backend listening to port **41960** and frontend lintening to port **419161**. You have to change in the script manually if want other ports (to-do: make script use arguments).
+The script will put the backend listening to port **41960** and frontend lintening to port **41961**. You have to change in the script manually if want other ports (to-do: make script use arguments).
 
 If you want to run then manually, then do
 ```
@@ -39,7 +39,7 @@ $ docker run -p $PORT2:5000 -p $PORT2:3000 -d $USER/<your_client_container_name>
 ```
 for the frontend. After the build in the frontend, everything should be fine!
 
-(Observation: until now, the backend port is hardcoded in the front (one of the points of TODO list), if you change the port that the docker is binding, you will have to change it in the [ExchangeApi](ExchangeApi.js) in the frontend) 
+(Observation: until now, the backend port is hardcoded in the front (one of the points of TODO list), if you change the port that the docker is binding, you will have to change it in the [ExchangeApi](https://github.com/andrentaz/miniature-happiness/blob/master/frontend-node/app/api/ExchangeApi.js) in the frontend) 
 
 You can check if the containers are running using:
 ```
@@ -66,7 +66,7 @@ $ npm install
 $ npm dev
 ```
 ## License
-This project is licensed under the MIT License - see the (LICENSE.md)[LICENSE.md] file for details
+This project is licensed under the MIT License - see the (LICENSE.md)[https://github.com/andrentaz/miniature-happiness/blob/master/LICENSE.md] file for details
 
 ## Future TO-DOs
 - Change the script to use arguments;
