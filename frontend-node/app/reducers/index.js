@@ -11,8 +11,38 @@ const filter = (state = '', action) => {
     }
 };
 
+const defaultExchangeState = {
+    fetching: false,
+    products: [],
+    error: {},
+};
+
+const exchange = (state = defaultExchangeState, action) => {
+    switch(action.type) {
+        case types.FETCHING_PRODUCTS:
+            return {
+                ...state,
+                fetching: true,
+            };
+        case types.RECEIVED_PRODUCTS:
+            return {
+                ...state,
+                fetching: false,
+                products: action.products,
+            };
+        case types.FAILED_FETCH_PRODUCTS:
+            return {
+                ...state,
+                fetching: false,
+                error: action.error,
+            };
+        default:
+            return state;
+    }
+};
 
 const rootReducer = combineReducers({
+    exchange,
     filter,
     routing
 });

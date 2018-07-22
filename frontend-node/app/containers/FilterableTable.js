@@ -1,11 +1,13 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
+
 import { filterTable } from '../actions';
+
 import ProductTable from '../components/ProductTable';
 import style from '../styles/filterableTable.scss';
 
-const FilterableTable = ({ filter, onFilter }) => {
+const FilterableTable = ({ filter, products, onFilter }) => {
     let input;
 
     return (
@@ -21,7 +23,7 @@ const FilterableTable = ({ filter, onFilter }) => {
             </div>
 
             <div className={style.productsContainer}>
-                <ProductTable filter={filter} />
+                <ProductTable filter={filter} products={products} />
             </div>
         </div>
     );
@@ -29,18 +31,20 @@ const FilterableTable = ({ filter, onFilter }) => {
 
 FilterableTable.propTypes = {
     filter: PropTypes.string,
-    onFilter: PropTypes.func
+    onFilter: PropTypes.func,
+    products: PropTypes.array,
 };
 
 const mapStateToProps = (state) => {
     return {
-        filter: state.filter
+        filter: state.filter,
+        products: state.exchange.products
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onFilter: filterText => dispatch(filterTable(filterText))
+        onFilter: filterText => dispatch(filterTable(filterText)),
     };
 };
 
