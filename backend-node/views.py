@@ -1,5 +1,4 @@
 import flask
-import json
 import os
 
 from services.moneeda_service import MoneedaApiService
@@ -40,7 +39,7 @@ def products():
     # Get shared products
     shared_products = _get_shared_products_from_exchanges(products_by_exchange)
 
-    return json.dumps(shared_products)
+    return flask.jsonify(shared_products)
 
 
 @blueprint.route("/products/<product_id>/prices")
@@ -61,7 +60,7 @@ def prices(product_id):
     # Get the exchanges
     exchange_list = os.environ.get("AVAILABLE_EXCHANGES").split(",")
 
-    return json.dumps([
+    return flask.jsonify([
         api_service.get_product_price_for_exchange(product_id, ex)
         for ex in exchange_list
     ])

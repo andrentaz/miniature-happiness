@@ -2,15 +2,15 @@ import os
 
 from flask import Flask
 from flask import jsonify
+from flask_cors import CORS
 from services.moneeda_service import InvalidProduct
 from views import blueprint
-
 
 
 def create_app():
     app = Flask(__name__)
     app.register_blueprint(blueprint)
-
+    CORS(app, resources=r"/*", headers='Content-Type')
 
     @app.errorhandler(InvalidProduct)
     def invalid_product(error):
