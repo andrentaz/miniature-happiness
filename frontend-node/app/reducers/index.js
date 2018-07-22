@@ -62,6 +62,12 @@ const exchange = (state = defaultExchangeState, action) => {
                 productPrices: action.error,
             };
 
+        case types.RESET_PRODUCT_ID:
+            return {
+                ...state,
+                productId: '',
+            };
+
         default:
             return state;
     }

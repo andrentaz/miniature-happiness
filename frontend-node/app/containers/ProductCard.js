@@ -4,8 +4,10 @@ import { connect } from 'react-redux';
 
 import { fetchProductPrices } from '../actions';
 
+import style from '../styles/product.scss';
 
-class ProductRow extends Component {
+
+class ProductCard extends Component {
     static propTypes = {
         data: PropTypes.object,
         onSelectProduct: PropTypes.func,
@@ -14,8 +16,8 @@ class ProductRow extends Component {
     render() {
         const { data, onSelectProduct } = this.props;
         return (
-            <div onClick={() => onSelectProduct(data.id)}>
-                <p>{data.id} = {data.baseMinSize} </p>
+            <div className={style.productRow} onClick={() => onSelectProduct(data.id)}>
+                <p className={style.productRowText}>{data.id}</p>
             </div>
         );
     }
@@ -32,4 +34,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
     undefined,
     mapDispatchToProps
-)(ProductRow);
+)(ProductCard);

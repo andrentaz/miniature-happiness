@@ -1,0 +1,58 @@
+.productTable {
+    padding: 0px 50px;
+    text-align: center;
+}
+
+.productRow {
+    display: inline-block;
+    text-align: center;
+    background-color: #ffffff;
+    border-radius: 6px;
+    margin: 10px;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.productRowText {
+    margin: 2px;
+    font-weight: bold;
+}
+
+.productPriceCard {
+    display: inline-block;
+    text-align: center;
+    font-weight: bold;
+    background-color: white;
+    border-radius: 6px;
+    margin: 0px 10px;
+
+    p {
+        margin: 10px;
+    }
+}
+
+.productPriceCardMax {
+    display: inline-block;
+    text-align: center;
+    font-weight: bold;
+    background-color: #a8edaf;
+    border-radius: 6px;
+    margin: 0px 10px;
+
+    p {
+        margin: 10px;
+    }
+}
+
+.productPriceCardMin {
+    display: inline-block;
+    text-align: center;
+    font-weight: bold;
+    background-color: #e8ada4;
+    border-radius: 6px;
+    margin: 0px 10px;
+
+    p {
+        margin: 10px;
+    }
+}

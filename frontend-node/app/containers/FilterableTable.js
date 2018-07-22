@@ -1,51 +1,66 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { filterTable } from '../actions';
+import { filterTable, resetProductId } from '../actions';
 
-import ProductTable from '../components/ProductTable';
+import ProductTable from './ProductTable';
 import style from '../styles/filterableTable.scss';
 
 
-const FilterableTable = ({ filter, products, onFilter }) => {
-    let input;
+class FilterableTable extends Component {
+    render() {
+        let input;
+        const { filter, onFilter, productId, resetSelection } = this.props;
 
-    return (
-        <div className={style.filterableTable}>
-            <div>
-                <p className={style.productField}>
-                    Product
-                </p>
-                <input
-                    value={filter}
-                    ref={node => {input = node;}}
-                    onChange={() => onFilter(input.value)} />
-            </div>
+        const headerText = productId === ''
+            ? 'Click on a product card to check the price!'
+            : 'Click on reset button to select a Product again';
 
-            <div className={style.productsContainer}>
-                <ProductTable filter={filter} products={products} />
+        return (
+            <div className={style.filterableTable}>
+                <div className={style.productCtas}>
+                    <p className={style.productField}>
+                        {headerText}
+                    </p>
+                    {
+                        productId === '' ? (
+                            <input
+                                value={filter}
+                                ref={node => {input = node;}}
+                                onChange={() => onFilter(input.value)} />
+                        ) : (
+                            <button className={style.resetButton} onClick={resetSelection}>RESET</button>
+                        )
+                    }
+                </div>
+
+                <div className={style.productsContainer}>
+                    <ProductTable filter={filter} />
+                </div>
             </div>
-        </div>
-    );
-};
+        );
+    }
+}
 
 FilterableTable.propTypes = {
     filter: PropTypes.string,
     onFilter: PropTypes.func,
-    products: PropTypes.array,
+    productId: PropTypes.string,
+    resetSelection: PropTypes.func,
 };
 
 const mapStateToProps = (state) => {
     return {
         filter: state.filter,
-        products: state.exchange.products
+        productId: state.exchange.productId,
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
         onFilter: filterText => dispatch(filterTable(filterText)),
+        resetSelection: () => dispatch(resetProductId())
     };
 };
 

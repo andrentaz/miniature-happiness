@@ -57,4 +57,8 @@ const fetchProductPrices = (productId) => async dispatch => {
     }
 };
 
-export { filterTable, fetchProducts, fetchProductPrices };
+const resetProductId = () => dispatch => {
+    dispatch({ type: types.RESET_PRODUCT_ID });
+};
+
+export { fetchProducts, fetchProductPrices, filterTable, resetProductId };

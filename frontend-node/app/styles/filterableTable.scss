@@ -1,6 +1,7 @@
 .filterableTable {
 	display: inline-block;
-	padding: 20px;
+	padding: 50px;
+	margin: 50px;
 	background-color: lightblue;
 	border-radius: 20px;
 }
@@ -8,4 +9,12 @@
 .productsContainer {
 	text-align: left;
 	font-size: 14px;
+}
+
+.productCtas {
+	margin-bottom: 20px;
+}
+
+.resetButton {
+	padding: 5px;
 }
