@@ -23,7 +23,7 @@ class FilterableTable extends Component {
         const { fetching, filter, onFilter, productId, resetSelection } = this.props;
 
         const headerText = productId === ''
-            ? 'Click on a product card to check the price!'
+            ? 'Click on a product card to check the price! You can also filter products using the box below :)'
             : 'Click on reset button to select a Product again';
 
         return (
@@ -36,9 +36,12 @@ class FilterableTable extends Component {
                         {
                             productId === '' ? (
                                 <input
+                                    className={style.textBox}
                                     value={filter}
                                     ref={node => {input = node;}}
-                                    onChange={() => onFilter(input.value)} />
+                                    onChange={() => onFilter(input.value)}
+                                    placeholder="Product Name..."
+                                    size="50"/>
                             ) : (
                                 <button className={style.resetButton} onClick={resetSelection}>RESET</button>
                             )

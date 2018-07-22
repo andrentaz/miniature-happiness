@@ -26,6 +26,14 @@ class AppContainer extends Component {
                     <div className={style.exchangeImage} />
                     <h1 className={style.title}>Available Exchanges</h1>
                 </div>
+                <div className={style.explanation}>
+                    <p>
+                        Welcome My Master :)
+                        <br />My name is Exchanger, and my honor and duty in life is support you with the wonderful taks of showing some exchanges products and prices!
+                        <br />It's always an honor to serve you :)
+                        <br /> Have a nice day.
+                    </p>
+                </div>
                 <FilterableTable />
             </div>
         );
