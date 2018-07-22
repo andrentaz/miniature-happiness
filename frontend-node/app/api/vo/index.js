@@ -1,7 +1,7 @@
 import BaseVO from './BaseVO';
 
 /**
- * This is a VO to products DTOs
+ * VO to products DTOs
  */
 class ProductVO extends BaseVO {
     static fields = [
@@ -15,4 +15,15 @@ class ProductVO extends BaseVO {
     ]
 }
 
-export { ProductVO };
+/**
+ * VO to product prices DTOs
+ */
+class ProductPriceVO extends BaseVO {
+    static fields = [
+        { name: 'exchange', dtoName: 'exchange' },
+        { name: 'price', dtoName: 'price' },
+        { name: 'productId', dtoName: 'product_id' },
+    ]
+}
+
+export { ProductVO, ProductPriceVO };

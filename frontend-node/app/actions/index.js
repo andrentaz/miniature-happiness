@@ -34,4 +34,27 @@ const fetchProducts = () => async dispatch => {
     }
 };
 
-export { filterTable, fetchProducts };
+/**
+ * Action that fetches the available product prices
+ * @param {string} productId - selected product id
+ */
+const fetchProductPrices = (productId) => async dispatch => {
+    dispatch({ type: types.FETCHING_PRODUCT_PRICES });
+
+    try {
+        const productPrices = await ExchangeApi.getProductPrices(productId);
+
+        dispatch({
+            type: types.RECEIVED_PRODUCT_PRICES,
+            productPrices,
+            productId,
+        });
+    } catch (error) {
+        dispatch({
+            type: types.FAILED_FETCH_PRODUCT_PRICES,
+            error,
+        });
+    }
+};
+
+export { filterTable, fetchProducts, fetchProductPrices };

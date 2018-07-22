@@ -29,12 +29,6 @@ class AppContainer extends Component {
     }
 }
 
-const mapStateToProps = state => {
-    return {
-        products: state.exchange.products,
-    };
-};
-
 const mapDispatchToProps = dispatch => {
     return {
         onConstruct: () => {
@@ -44,6 +38,6 @@ const mapDispatchToProps = dispatch => {
 };
 
 export default connect(
-    mapStateToProps,
+    undefined,
     mapDispatchToProps
 )(AppContainer);

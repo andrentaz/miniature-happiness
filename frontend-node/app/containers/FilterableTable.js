@@ -7,6 +7,7 @@ import { filterTable } from '../actions';
 import ProductTable from '../components/ProductTable';
 import style from '../styles/filterableTable.scss';
 
+
 const FilterableTable = ({ filter, products, onFilter }) => {
     let input;
 

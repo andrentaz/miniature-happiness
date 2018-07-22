@@ -14,6 +14,8 @@ const filter = (state = '', action) => {
 const defaultExchangeState = {
     fetching: false,
     products: [],
+    productPrices: [],
+    productId: '',
     error: {},
 };
 
@@ -24,18 +26,42 @@ const exchange = (state = defaultExchangeState, action) => {
                 ...state,
                 fetching: true,
             };
+
+        case types.FETCHING_PRODUCT_PRICES:
+            return {
+                ...state,
+                fetching: true,
+            };
+
         case types.RECEIVED_PRODUCTS:
             return {
                 ...state,
                 fetching: false,
                 products: action.products,
             };
+
+        case types.RECEIVED_PRODUCT_PRICES:
+            return {
+                ...state,
+                fetching: false,
+                productPrices: action.productPrices,
+                productId: action.productId,
+            };
+
         case types.FAILED_FETCH_PRODUCTS:
             return {
                 ...state,
                 fetching: false,
                 error: action.error,
             };
+
+        case types.FAILED_FETCH_PRODUCT_PRICE:
+            return {
+                ...state,
+                fetching: false,
+                productPrices: action.error,
+            };
+
         default:
             return state;
     }
