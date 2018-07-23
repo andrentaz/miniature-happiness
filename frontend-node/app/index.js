@@ -4,8 +4,10 @@ import { AppContainer } from 'react-hot-loader';
 import { configureStore, history } from './store/configureStore';
 import Root from './containers/Root';
 
+// Create the store
 const store = configureStore();
 
+// Use the react dom to render the react application in the right spot in the html
 ReactDOM.render(
     <AppContainer>
         <Root store={store} history={history} />
@@ -13,6 +15,7 @@ ReactDOM.render(
     document.getElementById('root')
 );
 
+// Setup hot loader
 if (module.hot) {
     module.hot.accept('./containers/Root', () => {
         const newConfigureStore = require('./store/configureStore');

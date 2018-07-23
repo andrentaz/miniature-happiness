@@ -9,6 +9,9 @@ import ProductTable from './ProductTable';
 import style from '../styles/filterableTable.scss';
 
 
+/**
+ * Table that display the price cards and the products
+ */
 class FilterableTable extends Component {
     static propTypes = {
         fetching: PropTypes.bool,
@@ -22,10 +25,13 @@ class FilterableTable extends Component {
         let input;
         const { fetching, filter, onFilter, productId, resetSelection } = this.props;
 
+        // choose the text
         const headerText = productId === ''
             ? 'Click on a product card to check the price! You can also filter products using the box below :)'
             : 'Click on reset button to select a Product again';
 
+        // Displays the loading based on fetch state,
+        // Choose the headers texts and deals with the actions
         return (
             <div className={style.filterableTable}>
                 <Loading isLoading={fetching}>

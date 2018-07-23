@@ -8,6 +8,12 @@ import FilterableTable from './FilterableTable';
 import style from '../styles/appContainer.scss';
 
 
+/**
+ * AppContainer that is the parent of all the application.
+ * The pattern followed is container/component
+ * The component is usually created in the same file as the container, basically, if there is logic
+ * in the component, it is a container.
+ */
 class AppContainer extends Component {
     static propTypes = {
         onConstruct: PropTypes.func.isRequired,

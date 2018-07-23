@@ -2,6 +2,7 @@ import { routerReducer as routing } from 'react-router-redux';
 import { combineReducers } from 'redux';
 import * as types from '../actions/types';
 
+// Filter reducer
 const filter = (state = '', action) => {
     switch (action.type) {
         case types.FILTER:
@@ -11,6 +12,7 @@ const filter = (state = '', action) => {
     }
 };
 
+// Reducers to actions that deals with client-server communication
 const defaultExchangeState = {
     fetching: false,
     products: [],
@@ -73,6 +75,7 @@ const exchange = (state = defaultExchangeState, action) => {
     }
 };
 
+// Create a super reducer by combining all the three reducers
 const rootReducer = combineReducers({
     exchange,
     filter,

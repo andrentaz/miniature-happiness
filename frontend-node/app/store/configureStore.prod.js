@@ -5,6 +5,7 @@ import thunk from 'redux-thunk';
 
 import rootReducer from '../reducers';
 
+// configure history and apply middlewares to the dispatch inside actions for example
 export const history = createHistory();
 const middlewares = [thunk, routerMiddleware(history)];
 

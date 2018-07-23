@@ -7,6 +7,10 @@ import ProductPriceCard from '../components/ProductPriceCard';
 import style from '../styles/product.scss';
 
 
+/**
+ * Dashboard that shows all the products and product prices if a product is
+ * selected.
+ */
 class ProductTable extends Component {
     static propTypes = {
         filter: PropTypes.string,
@@ -19,6 +23,7 @@ class ProductTable extends Component {
         const { filter, products, productId, productPrices } = this.props;
         let content;
 
+        // checks if there is any product selected
         if (productId === '') {
             const rows = [];
 
@@ -32,8 +37,11 @@ class ProductTable extends Component {
                     );
                 }
             });
+            // render only products that match the filter
             content = rows;
         } else {
+            // case there is a product selected and there is prices already,
+            // render product prices cards, instead of product cards
             const prices = productPrices.map(price => price.price);
             const max = Math.max(...prices);
             const min = Math.min(...prices);

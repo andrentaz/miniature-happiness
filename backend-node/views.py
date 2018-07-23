@@ -12,7 +12,7 @@ def home():
     return "Hello World!"
 
 
-@blueprint.route("/products")
+@blueprint.route("/products", methods=['GET'])
 def products():
     """
     This route is supposed to return all the shared products in all three
@@ -42,7 +42,7 @@ def products():
     return flask.jsonify(shared_products)
 
 
-@blueprint.route("/products/<product_id>/prices")
+@blueprint.route("/products/<product_id>/prices", methods=['GET'])
 def prices(product_id):
     """
     This route is supposed to return all the prices of products in all three

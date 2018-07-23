@@ -7,7 +7,11 @@ import {ConnectedRouter} from 'react-router-redux';
 import App from './App';
 import DevTools from './DevTools';
 
-
+/**
+ * This component makes the routing of the app, it can be extended to deal with more
+ * routes in the future.
+ * @param {prop} param0 component props
+ */
 export default function Root({store, history}) {
     return (
         <Provider store={store}>

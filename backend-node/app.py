@@ -8,6 +8,8 @@ from views import blueprint
 
 
 def create_app():
+    """Creates the Flask App used to serve the resources
+    """
     app = Flask(__name__)
     app.register_blueprint(blueprint)
     CORS(app, resources=r"/*", headers='Content-Type')
