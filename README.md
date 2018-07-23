@@ -65,6 +65,19 @@ You can also use the webpack dev server with
 $ npm install
 $ npm dev
 ```
+## Architecture
+In this section, I will go super simple in explain the basics of the archtecture of the project.
+
+For the Backend, there is a minimum Flask microservice. It simply creates an app in the **app.py** entrypoint, and then use the **blueprint** in the **views** to implement all the endpoints and resources.
+
+To take care of the business logic and the access to the **Moneeda External API**, there is a service layer, in the **services** module, that use [requests](http://docs.python-requests.org/en/master/) to handle the HTTPS requests.
+
+The Frontend is a little more complicated. The components follow the patter **container/component** where the container take care of the logic and decisions and the component deals with the layout itself.
+
+For the business logic in the front side, **Redux** is used, where the actions are implemented with the help of [Redux-Thunk](https://github.com/reduxjs/redux-thunk). The reducers are all in the same place due to the simple app.
+
+To deal with the **client-server communication**, there are ApiClient classes in that use an implementation of the **XHR API** to handle the HTTP communication.
+
 ## License
 This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/andrentaz/miniature-happiness/blob/master/LICENSE.md) file for details
 
